@@ -568,7 +568,8 @@ MODULE cp_control_types
                                               correct_el_density_dip, &
                                               do_sccs, &
                                               apply_embed_pot, &
-                                              apply_dmfet_pot
+                                              apply_dmfet_pot, &
+                                              lri_save
    END TYPE dft_control_type
 
    CHARACTER(len=*), PARAMETER, PRIVATE :: moduleN = 'cp_control_types'

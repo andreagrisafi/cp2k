@@ -23,6 +23,7 @@ MODULE qs_scf_post_scf
    USE qs_scf_post_se,                  ONLY: scf_post_calculation_se
    USE qs_scf_post_tb,                  ONLY: scf_post_calculation_tb
    USE qs_scf_types,                    ONLY: qs_scf_env_type
+   USE lri_save_ovlp_and_coefs,         ONLY: save_ovlp_and_coefs
 #include "./base/base_uses.f90"
 
    IMPLICIT NONE
@@ -65,6 +66,8 @@ CONTAINS
          CPWARN("No properties from PRINT section available for OFGPW methods")
       ELSEIF (dft_control%qs_control%lri_optbas .AND. dft_control%qs_control%gpw) THEN
          CALL optimize_lri_basis(qs_env)
+      ELSEIF (dft_control%lri_save .AND. dft_control%qs_control%lrigpw) THEN
+         CALL save_ovlp_and_coefs(qs_env) 
       ELSE
          IF (PRESENT(wf_type)) THEN
             CALL scf_post_calculation_gpw(qs_env, wf_type=wf_type)

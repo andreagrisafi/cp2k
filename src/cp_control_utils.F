@@ -536,6 +536,9 @@ CONTAINS
       tmp_section => section_vals_get_subs_vals(dft_section, "EXTERNAL_VXC")
       CALL section_vals_get(tmp_section, explicit=dft_control%apply_external_vxc)
 
+      ! Return logical for saving LRI quantities
+      CALL section_vals_val_get(dft_section, "SAVE_LRI", l_val=dft_control%lri_save)
+
    END SUBROUTINE read_dft_control
 
 ! **************************************************************************************************
